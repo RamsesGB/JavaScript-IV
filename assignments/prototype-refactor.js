@@ -25,6 +25,7 @@ Prototype Refactor
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 
+/*
 function GameObject(obj) {
     this.createdAt = obj.createdAt;
     this.name = obj.name;
@@ -34,25 +35,46 @@ function GameObject(obj) {
   GameObject.prototype.destroy = function() {
     console.log(`${this.name} was removed from the game.`);
   };
-  
+  */
+
+ class GameObject {
+    constructor(obj){
+        this.createdAt = obj.createdAt;
+        this.name = obj.name;
+        this.dimensions = obj.dimensions;
+    }
+    destroy(){
+        console.log(`${this.name} was removed from the game.`);
+    }
+};
   /*
     === CharacterStats ===
     * healthPoints
     * takeDamage() // prototype method -> returns the string '<object name> took damage.'
     * should inherit destroy() from GameObject's prototype
   */
+
+//   function CharacterStats(obj2) {
+//     GameObject.call(this, obj2);
+//     this.healthPoints = obj2.healthPoints;
+//   };
   
-  function CharacterStats(obj2) {
-    GameObject.call(this, obj2);
-    this.healthPoints = obj2.healthPoints;
-  };
+//   CharacterStats.prototype = Object.create(GameObject.prototype);
   
-  CharacterStats.prototype = Object.create(GameObject.prototype);
+//   CharacterStats.prototype.takeDamage = function() {
+//     return `${this.name} took damage`;
+//   };
   
-  CharacterStats.prototype.takeDamage = function() {
-    return `${this.name} took damage`;
-  };
-  
+class CharacterStats extends GameObject {
+    constructor(obj2){
+        super(obj2);
+        this.healthPoints = obj2.healthPoints;
+    }
+    takeDamage(){
+      return `${this.name} took damage`;
+    }
+};
+
   /*
     === Humanoid (Having an appearance or character resembling that of a human.) ===
     * team
@@ -62,36 +84,48 @@ function GameObject(obj) {
     * should inherit destroy() from GameObject through CharacterStats
     * should inherit takeDamage() from CharacterStats
   */
-  
-  function Humanoid(obj3) {
-    CharacterStats.call(this, obj3);
-    this.team = obj3.team;
-    this.weapons = obj3.weapons;
-    this.language = obj3.language;
-  }
-  
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
-  
-  Humanoid.prototype.greet = function() {
-    return `${this.name} offers a greeting in ${this.language}`
+
+  class Humanoid extends CharacterStats {
+      constructor(obj3){
+          super(obj3);
+          this.team = obj3.team;
+          this.weapons = obj3.weapons;
+          this.language = obj3.language;
+      }
+      greet(){
+        return `${this.name} offers a greeting in ${this.language}`;
+      };
   };
   
+//   function Humanoid(obj3) {
+//     CharacterStats.call(this, obj3);
+//     this.team = obj3.team;
+//     this.weapons = obj3.weapons;
+//     this.language = obj3.language;
+//   }
   
-  function Villain(obj4) {
-    Humanoid.call(this, obj4);
+//   Humanoid.prototype = Object.create(CharacterStats.prototype);
+  
+//   Humanoid.prototype.greet = function() {
+//     return `${this.name} offers a greeting in ${this.language}`
+//   };
+  class Villain extends Humanoid {
+      constructor(obj4){
+          super(obj4);
+      }
+      drainHealth(){
+          //write function or drain health
+      }
   }
   
-  Villain.prototype.drainHealth = function(num1){
-    return ``
-  }
-  
-  function Hero(obj5){
-    Humanoid.call(this, obj5);
-  }
-  
-  Hero.prototype.restoreHealth = function(num2){
-  
-  }
+class Hero extends Humanoid{
+    constructor(obj5){
+        super(obj5);
+    }
+    restoreHealth(){
+        //write function for restore health
+    }
+}
    
   /*
     * Inheritance chain: GameObject -> CharacterStats -> Humanoid
