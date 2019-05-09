@@ -31,11 +31,14 @@ class Instructor extends Person {
         let scoreNum = getRandomInt(20);
         let coinFlip = getRandomInt(2);
         if (coinFlip === 0){
-        console.log(`${studentObj.name} scored ${studentObj.grade + scoreNum} on this assignment`)
+            studentObj.grade += scoreNum;
+        // console.log(`${studentObj.name} scored ${studentObj.grade + scoreNum} on this assignment`)
             }
         else {
-        console.log(`${studentObj.name} scored ${studentObj.grade - scoreNum} on this assignment`)   
+            studentObj.grade -= scoreNum;
+        // console.log(`${studentObj.name} scored ${studentObj.grade - scoreNum} on this assignment`)   
         }
+        console.log(`${studentObj.name} grade hs been changed to ${studentObj.grade}`)
       }
 }
 
@@ -56,6 +59,14 @@ class Student extends Person {
     }
     sprintChallenge(subjectString){
         console.log(`${this.name} has begun sprint challenge on ${subjectString}`);
+    }
+    graduate(){
+        if (this.grade >= 70){
+            console.log(`Congrats, you passed!`)
+        }
+        else{
+            console.log('Try again!')
+        }
     }
 }
 
@@ -89,7 +100,7 @@ const ramses = new Student({
     previousBackground: 'Real Estate', 
     className: 'Web20', 
     favSubjects: ['css', 'html', 'JS'],
-    grade: 70,
+    grade: 60,
 });
 
 const winnieSong = new Student({
@@ -98,7 +109,8 @@ const winnieSong = new Student({
     age: 22,
     previousBackground: `MUA`,
     className: `web20`,
-    favSubjects: ['CSS', 'HTML', 'LESS']
+    favSubjects: ['CSS', 'HTML', 'LESS'],
+    grade: 60,
 });
 
 const chris = new Student({
@@ -107,7 +119,8 @@ const chris = new Student({
     location: 'Los Angeles', 
     previousBackground: 'Sales', 
     className: 'Web20', 
-    favSubjects: 'JavaScript Classes'
+    favSubjects: 'JavaScript Classes',
+    grade: 60,
 });
 
 
@@ -139,3 +152,6 @@ joshua.demo('Javascript IV');
 joshua.standUp('Web_20 Sprint 3');
 joshua.debugsCode(ramses, 'Prototypes');
 joshua.score(ramses);
+joshua.score(ramses);
+joshua.score(ramses);
+ramses.graduate();
