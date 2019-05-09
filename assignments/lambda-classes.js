@@ -57,7 +57,45 @@ class ProjectManager extends Instructor {
     }
 }
 
-const Joshua = new ProjectManager({
+const danLevy = new Instructor({
+    name: 'Dan Levy', 
+    age: 35, 
+    location: 'Denver',
+    specialty: 'Cat jokes',
+    favLanguage: 'Javascript',
+    catchPhrase: 'Give me a thread in slack',
+})
+
+const ramses = new Student({
+    name: 'Ramses', 
+    age: 25, 
+    location: 'Miami', 
+    previousBackground: 'Real Estate', 
+    className: 'Web20', 
+    favSubjects: ['css', 'html', 'JS'],
+});
+
+const winnieSong = new Student({
+    name: 'Winnie Song',
+    location: 'Flushing',
+    age: 22,
+    previousBackground: `MUA`,
+    className: `web20`,
+    favSubjects: ['CSS', 'HTML', 'LESS']
+});
+
+const chris = new Student({
+    name: 'Chris', 
+    age: 23, 
+    location: 'Los Angeles', 
+    previousBackground: 'Sales', 
+    className: 'Web20', 
+    favSubjects: 'JavaScript Classes'
+});
+
+
+
+const joshua = new ProjectManager({
     name: 'Joshua',
     location: 'California',
     age: 'Thirties',
@@ -66,4 +104,20 @@ const Joshua = new ProjectManager({
     catchPhrase: 'brady bunch view',
     gradClassName: 'WEB17',
     favInstructor: 'Josh Knell',
-})
+});
+
+ramses.speak();
+ramses.listsSubjects();
+//
+winnieSong.speak();
+winnieSong.listsSubjects();
+//
+chris.speak();
+chris.listsSubjects();
+//
+danLevy.speak();
+danLevy.grade(ramses, 'Javascript IV');
+//
+joshua.demo('Javascript IV');
+joshua.standUp('Web_20 Sprint 3');
+joshua.debugsCode(ramses, 'Prototypes');
